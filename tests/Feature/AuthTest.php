@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -22,10 +23,8 @@ class AuthTest extends TestCase
             "password_confirmation" => "fljgjdkskd333"
         ];
 
-        $this->get(route("register"))
-            ->assertSee("register");
-
-        $this->post("register", $data);
+        $this->postJson("register", $data)
+        ->assertStatus(201);
 
         $this->assertDatabaseHas("users", [
             "email" => $data["email"]
@@ -37,9 +36,6 @@ class AuthTest extends TestCase
     public function login()
     {
 
-        //vista login
-        $this->get(route("login"))
-            ->assertSee("login");
 
         //registro de usuario
         $data = [
@@ -48,13 +44,15 @@ class AuthTest extends TestCase
             "password" => "fljgjdkskd333",
             "password_confirmation" => "fljgjdkskd333"
         ];
-        $this->post("register", $data);
+        $this->postJson("register", $data);
 
         //envio de login
-        $this->post("login", [
+        $this->postJson("login", [
             "email" => $data["email"],
             "password" => $data["password"]
         ])
-            ->assertRedirect("home");
+            ->assertStatus(204);
     }
+
+
 }
