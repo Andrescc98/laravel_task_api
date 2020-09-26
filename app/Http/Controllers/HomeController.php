@@ -13,16 +13,25 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Show the user authenticate.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\Auth\Authenticatable
      */
     public function index()
     {
-        return view('home');
+        return auth()->user();
+    }
+
+    /**
+     * Show if user is auth.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function isAuth()
+    {
+        return response("", 204);
     }
 }

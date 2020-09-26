@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware("auth:sanctum")->get('is_auth', "HomeController@isAuth");
 
+Route::middleware("auth:sanctum")->get('user', "HomeController@index");
