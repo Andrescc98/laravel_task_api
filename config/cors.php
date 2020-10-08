@@ -27,7 +27,8 @@ return [
 
     'allowed_origins' => [
         'http://localhost:4200',
-        'http://localhost:3000'
+        'http://localhost:3000',
+        'http://www.task.com'
     ],
 
     'allowed_origins_patterns' => [],
