@@ -20,9 +20,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return auth()->user();
+        return $request->user();
     }
 
     /**
